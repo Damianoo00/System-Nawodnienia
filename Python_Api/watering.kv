@@ -1,4 +1,14 @@
-<MyGrid>:
+WindowManager:
+    MainWindow:
+    ProcessWindow:
+
+
+
+
+
+
+<MainWindow>:
+    name: "main"
 
     ip: ip
     time_I: time_I
@@ -7,8 +17,7 @@
 
     GridLayout:
         cols: 1
-        size: root.width-200, root.height-200
-        pos: 100, 100
+        
         GridLayout:
             cols: 2
         
@@ -35,4 +44,24 @@
         
         Button:
             text:"Wyślij"
+            on_press: 
+                app.root.current = "process" if time_I.text != '' and time_II.text != '' and time_III.text != '' and ip.text != '' else None
+                root.manager.transition.direction = "left"
             on_press: root.btn()
+
+<ProcessWindow>:
+    name: "process"
+    GridLayout:
+        cols: 1
+        
+
+        Label:
+            id: progress_label
+            text: "100%"
+        Button:
+            text: "Wróć"
+            on_press: 
+                app.root.current = "main" if progress_label.text == "100%" else None
+                root.manager.transition.direction = "right" 
+
+    
