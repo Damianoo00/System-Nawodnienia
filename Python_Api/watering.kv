@@ -1,0 +1,38 @@
+<MyGrid>:
+
+    ip: ip
+    time_I: time_I
+    time_II: time_II
+    time_III: time_III
+
+    GridLayout:
+        cols: 1
+        size: root.width-200, root.height-200
+        pos: 100, 100
+        GridLayout:
+            cols: 2
+        
+            Label:
+                text: "ip: "
+            TextInput:
+                id: ip
+                multiline: False
+            Label:
+                text: "Czas podlewania I pola"
+            TextInput:
+                id: time_I
+                multiline: False
+            Label:
+                text: "Czas podlewania II pola"
+            TextInput:
+                id: time_II
+                multiline: False
+            Label:
+                text: "Czas podlewania III pola"
+            TextInput:
+                id: time_III
+                multiline: False
+        
+        Button:
+            text:"Wyślij"
+            on_press: root.btn()
