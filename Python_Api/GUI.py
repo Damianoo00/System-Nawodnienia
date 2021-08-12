@@ -9,6 +9,10 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import ScreenManager, Screen
 
 class MainWindow(Screen):
+    pass
+
+
+class SetWindow(Screen):
     ip = ObjectProperty(None)
     time_I = ObjectProperty(None)
     time_II = ObjectProperty(None)
@@ -18,6 +22,8 @@ class MainWindow(Screen):
 
     def btn(self):
         print("ip: ", self.ip.text, "time_I: ", self.time_I.text, "time_II: ", self.time_II.text, "time_III: ", self.time_III.text)
+class TestWindow(Screen):
+    pass
 
 class ProcessWindow(Screen):
     pass

@@ -1,14 +1,60 @@
 WindowManager:
     MainWindow:
     ProcessWindow:
+    SetWindow
+    TestWindow
 
-
-
-
-
-
-<MainWindow>:
+<MainWindow>
     name: "main"
+
+    GridLayout:
+        cols: 1
+
+        Button:
+            text: "Testy"
+            on_press: 
+                app.root.current = "test"
+                root.manager.transition.direction = "right"
+
+        Button:
+            text: "Program podlewania"
+            on_press:
+                app.root.current = "set"
+                root.manager.transition.direction = "left"
+
+<TestWindow>
+    name: "test"
+
+    GridLayout:
+        cols: 1
+
+        GridLayout:
+            cols: 7
+
+            Button:
+                text: "Q0"
+            Button:
+                text: "Q1"
+            Button:
+                text: "Q2"
+            Button:
+                text: "Q3"
+            Button:
+                text: "Q4"
+            Button:
+                text: "Q5"
+            Button:
+                text: "Q6"
+        
+        Button:
+            text: "wróć"
+            on_press: 
+                app.root.current = "main"
+                root.manager.transition.direction = "left"
+
+
+<SetWindow>:
+    name: "set"
 
     ip: ip
     time_I: time_I
@@ -49,6 +95,12 @@ WindowManager:
                 root.manager.transition.direction = "left"
             on_press: root.btn()
 
+        Button:
+            text: "Wróć"
+            on_press:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
 <ProcessWindow>:
     name: "process"
     GridLayout:
@@ -61,7 +113,7 @@ WindowManager:
         Button:
             text: "Wróć"
             on_press: 
-                app.root.current = "main" if progress_label.text == "100%" else None
+                app.root.current = "set" if progress_label.text == "100%" else None
                 root.manager.transition.direction = "right" 
 
     
