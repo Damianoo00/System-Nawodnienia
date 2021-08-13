@@ -6,11 +6,13 @@ def bitlist2int(bit_list):
     r_bit_list = []
     while len(bit_list)<7:
         bit_list.append(0)
-    print(bit_list)
+    
+    r_bit_list.append(1)
+    
     l = len(bit_list)
     for i in range(l):
         r_bit_list.append(bit_list[l-1-i])
-    print(r_bit_list)
+    
     w = 0
     l = len(r_bit_list)
     for bit in r_bit_list:
