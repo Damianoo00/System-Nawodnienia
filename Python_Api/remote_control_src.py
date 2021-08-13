@@ -2,6 +2,26 @@ import snap7
 from net_address import IP, RACK, SLOT
 from db_details import DB_NUMBER, R0, R1, R2, R3
 
+def bitlist2int(bit_list):
+    r_bit_list = []
+    while len(bit_list)<7:
+        bit_list.append(0)
+    print(bit_list)
+    l = len(bit_list)
+    for i in range(l):
+        r_bit_list.append(bit_list[l-1-i])
+    print(r_bit_list)
+    w = 0
+    l = len(r_bit_list)
+    for bit in r_bit_list:
+        
+        w = w+bit* 2**(l-1)
+        l = l-1
+    
+
+    return w
+
+
 def display_interface_db(DB_NUMBER):
     db = plc.db_read(DB_NUMBER, 0, 9)
 

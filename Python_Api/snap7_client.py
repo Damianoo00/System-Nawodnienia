@@ -1,6 +1,6 @@
 from db_details import R5
 import snap7
-from remote_control_src import remote_DB_control_bool
+from remote_control_src import remote_DB_control_bool, bitlist2int
 
 IP = '192.168.2.15'
 RACK = 0
@@ -25,19 +25,13 @@ db = plc.db_read(DB_NUMBER, START_ADDRESS, SIZE)
 
 #print([int(x) for x in list('{0:0b}'.format(db[10]))])
 
-bit_list = [0,1,1,0,1,1,1]
-l = len(bit_list)
-w = 0
-for bit in bit_list:
-    w = w+bit* 2**(l-1)
-    l = l-1
-    
+bit_list = [1,1,1,0,1,1,0]
+bit_list_2 = [0,0,0,0,0,0,0,1]
 
 
-print(w)
 
-
-remote_DB_control_bool(plc, DB_NUMBER, w, 11)
+remote_DB_control_bool(plc, DB_NUMBER, bitlist2int(bit_list), 11)
+remote_DB_control_bool(plc, DB_NUMBER, bitlist2int(bit_list), 10)
 
 
 #product_name = db[1:256].decode('UTF-8').strip('\x00')
