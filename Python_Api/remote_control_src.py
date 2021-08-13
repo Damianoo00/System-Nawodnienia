@@ -17,6 +17,10 @@ def display_interface_db(DB_NUMBER):
     R3 = int.from_bytes(db[6:8], byteorder='big')
     print(f'(III) Time of watering [s]: {R3}')
 
+def display_outputs_state(DB_NUMBER, bit_of_start):
+    db = plc.db_read(DB_NUMBER, 10, 1)
+    print([int(x) for x in list('{0:0b}'.format(db[0]))])
+
 def display_state_of_programm(DB_NUMBER):
     db = plc.db_read(DB_NUMBER, 8, 2)
 
