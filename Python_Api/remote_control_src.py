@@ -51,6 +51,10 @@ def display_state_of_programm(DB_NUMBER):
 def remote_DB_control_bool(plc, DB_NUMBER, Value, start_byte):
     plc.db_write(DB_NUMBER, start_byte, bool.to_bytes(Value,1,byteorder='big'))
 
+def remote_control_outputs(plc, DB_NUMBER, start_byte, bits_list):
+    value = bitlist2int(bits_list)
+    remote_DB_control_bool(plc, DB_NUMBER, value, start_byte)
+
 def remote_DB_control_int(plc, DB_NUMBER, Value, start_byte):
     plc.db_write(DB_NUMBER, start_byte, int.to_bytes(Value, 2, byteorder='big'))
 

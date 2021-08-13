@@ -1,6 +1,6 @@
 import snap7
 import time
-from remote_control_src import remote_DB_control_int, remote_DB_control_bool, display_state_of_programm, display_outputs_state
+from remote_control_src import remote_DB_control_int, remote_DB_control_bool, display_state_of_programm, display_outputs_state, remote_control_outputs
 from net_address import IP, RACK, SLOT
 from db_details import DB_NUMBER, R0, R1, R2, R3, R4, R5, R6, R7, R8, R9, R10, R11, R20, R21, R22, R23
 
@@ -15,14 +15,14 @@ pompa_delay = 1*1000
 wylewanie_delay = 1*1000
 obnizenie_cisnienia = 1*1000
 
-response = input("Zaprogramuj podlewanie(y/n): ")
+response = input("Zaprogramuj podlewanie / testuj(p/t): ")
 if response == "y":
     time_I_pole =  input("Ustaw czas podelwania I pola [min]: ")
     time_II_pole =  input("Ustaw czas podelwania II pola [min]: ")
     time_III_pole =  input("Ustaw czas podelwania III pola [min]: ")
 
     response = input("Czy chcesz uruchomić ten program? (y/n): ")
-    if response == "y":
+    if response == "p":
         try:
             plc = snap7.client.Client()
             plc.connect(IP, RACK, SLOT)
@@ -56,4 +56,20 @@ if response == "y":
             print("-------------------------------")
         except:
             print("Coś poszło nie tak :(")
+if response == 't':
+    Q0 = input("Q0: ")
+    Q1 = input("Q1: ")
+    Q2 = input("Q2: ")
+    Q3 = input("Q3: ")
+    Q4 = input("Q4: ")
+    Q5 = input("Q5: ")
+    Q6 = input("Q6: ")
+
+    try:
+        remote_control_outputs(plc, DB_NUMBER, 11, [Q0, Q1, Q2, Q3, Q4, Q5, Q6])
+        display_outputs_state(DB_NUMBER, R5)
+    except:
+        print("Coś poszło nie tak :(")
+    
+
 exit()
