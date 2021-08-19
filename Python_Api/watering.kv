@@ -1,8 +1,31 @@
 WindowManager:
+    ConnectWindow:
     MainWindow:
     ProcessWindow:
     SetWindow
     TestWindow
+
+<ConnectWindow>
+    name: "connect"
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 2
+            Label:
+                text: "PLC ip :"
+            TextInput:
+                id: ip
+                multiline: False
+        
+        Button:
+            text: "Połącz"
+            on_press: 
+                root.ConnectWithPLC()
+                app.root.current = "main" if root.ConnectWithPLC() else None
+                root.manager.transition.direction = "up"
+                
+            
+
 
 <MainWindow>
     name: "main"
@@ -56,7 +79,7 @@ WindowManager:
 <SetWindow>:
     name: "set"
 
-    ip: ip
+    
     time_I: time_I
     time_II: time_II
     time_III: time_III
@@ -67,11 +90,7 @@ WindowManager:
         GridLayout:
             cols: 2
         
-            Label:
-                text: "ip: "
-            TextInput:
-                id: ip
-                multiline: False
+            
             Label:
                 text: "Czas podlewania I pola"
             TextInput:
@@ -91,7 +110,7 @@ WindowManager:
         Button:
             text:"Wyślij"
             on_press: 
-                app.root.current = "process" if time_I.text != '' and time_II.text != '' and time_III.text != '' and ip.text != '' else None
+                app.root.current = "process" if time_I.text != '' and time_II.text != '' and time_III.text != '' else None
                 root.manager.transition.direction = "left"
             on_press: root.btn()
 
