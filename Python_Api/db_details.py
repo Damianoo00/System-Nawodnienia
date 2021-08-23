@@ -15,3 +15,21 @@ R20 = 12
 R21 = 14
 R22 = 16
 R23 = 18
+M_state_of_program = 0
+M_sate_of_valve_I = 0
+M_state_of_valve_II = 0
+M_state_of_valve_III = 0
+M_state_of_valve_pouring = 0
+M_state_of_valve_ares = 0
+M_state_of_inverter = 0
+
+M_set_of_valve_I = 0
+M_set_of_valve_II = 0
+M_set_of_valve_III = 0
+M_set_of_valve_pouring = 0
+M_set_of_valve_ares = 0
+M_set_of_inverter = 0
+
+
+
+
